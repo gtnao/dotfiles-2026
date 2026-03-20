@@ -24,6 +24,11 @@ if [ "$(basename "$SHELL")" != "zsh" ]; then
   chsh -s "$(which zsh)"
 fi
 
+# tmux
+if ! command -v tmux &>/dev/null; then
+  sudo apt install -y tmux
+fi
+
 # claude code
 if ! command -v claude &>/dev/null; then
   curl -fSL https://claude.ai/install.sh | bash
@@ -33,6 +38,7 @@ mkdir -p ~/.config
 ln -sfn "$DOTFILES_DIR/config/git" ~/.config/git
 ln -sfn "$DOTFILES_DIR/config/nvim" ~/.config/nvim
 ln -sfn "$DOTFILES_DIR/config/zsh/.zshrc" ~/.zshrc
+ln -sfn "$DOTFILES_DIR/config/tmux" ~/.config/tmux
 
 if [ "$(basename "$SHELL")" != "zsh" ]; then
   exec zsh
