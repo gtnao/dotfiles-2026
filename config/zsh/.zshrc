@@ -5,6 +5,34 @@ path=(
   $path
 )
 
+# history
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+# options: directory
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+
+# options: history
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+
+# options: completion
+setopt COMPLETE_IN_WORD
+setopt ALWAYS_TO_END
+
+# options: misc
+setopt NO_BEEP
+setopt CORRECT
+setopt EXTENDED_GLOB
+setopt INTERACTIVE_COMMENTS
+
 # zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
