@@ -5,3 +5,6 @@ vim.keymap.set("n", "<Leader>q", "<Cmd>quit<CR>", { desc = "Quit" })
 
 vim.keymap.set({ "n", "x" }, "<Plug>(_FuzzyFinder)", "<Nop>")
 vim.keymap.set({ "n", "x" }, "z", "<Plug>(_FuzzyFinder)")
+
+vim.keymap.set({ "n", "x" }, "<Plug>(_LSP)", "<Nop>")
+vim.keymap.set({ "n", "x" }, ",", "<Plug>(_LSP)")
