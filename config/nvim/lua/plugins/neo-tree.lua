@@ -7,9 +7,10 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 	keys = {
-		{ "<C-n>", "<Cmd>Neotree toggle<CR>" },
+		{ "<C-n>", "<Cmd>Neotree toggle reveal<CR>" },
 	},
 	opts = {
+		close_if_last_window = true,
 		filesystem = {
 			filtered_items = {
 				hide_dotfiles = false,

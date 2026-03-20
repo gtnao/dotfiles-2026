@@ -114,14 +114,17 @@ return {
 	{
 		"folke/trouble.nvim",
 		cmd = "Trouble",
-		opts = {},
+		opts = {
+			focus = true,
+			open_no_results = true,
+		},
 		keys = {
 			{ "<Plug>(_LSP)xx", "<Cmd>Trouble diagnostics toggle<CR>", desc = "Diagnostics" },
 			{ "<Plug>(_LSP)xb", "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer diagnostics" },
-			{ "<Plug>(_LSP)xs", "<Cmd>Trouble symbols toggle focus=false<CR>", desc = "Symbols" },
+			{ "<Plug>(_LSP)xs", "<Cmd>Trouble symbols toggle<CR>", desc = "Symbols" },
 			{
 				"<Plug>(_LSP)xl",
-				"<Cmd>Trouble lsp toggle focus=false win.position=right<CR>",
+				"<Cmd>Trouble lsp toggle win.position=right<CR>",
 				desc = "LSP definitions/references",
 			},
 		},
