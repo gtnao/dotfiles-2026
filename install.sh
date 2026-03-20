@@ -4,7 +4,7 @@ set -euo pipefail
 DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y git curl wget build-essential unzip jq
+sudo apt install -y git curl wget build-essential unzip jq just
 
 # neovim (AppImage, extracted)
 if ! command -v nvim &>/dev/null; then

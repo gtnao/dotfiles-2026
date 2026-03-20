@@ -1,4 +1,9 @@
-export PATH="$HOME/.local/bin:$PATH"
+typeset -Ugx path
+path=(
+  $HOME/.cargo/bin(N)
+  $HOME/.local/bin(N)
+  $path
+)
 
 # zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
