@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
+
 # neovim (AppImage, extracted)
 if ! command -v nvim &>/dev/null; then
   tmp="$(mktemp -d)"
@@ -12,4 +14,26 @@ if ! command -v nvim &>/dev/null; then
   sudo mv squashfs-root /opt/nvim
   sudo ln -sfn /opt/nvim/AppRun /usr/local/bin/nvim
   rm -rf "$tmp"
+fi
+
+# zsh
+if ! command -v zsh &>/dev/null; then
+  sudo apt install -y zsh
+fi
+if [ "$(basename "$SHELL")" != "zsh" ]; then
+  chsh -s "$(which zsh)"
+fi
+
+# claude code
+if ! command -v claude &>/dev/null; then
+  curl -fSL https://claude.ai/install.sh | bash
+fi
+
+mkdir -p ~/.config
+ln -sfn "$DOTFILES_DIR/config/git" ~/.config/git
+ln -sfn "$DOTFILES_DIR/config/nvim" ~/.config/nvim
+ln -sfn "$DOTFILES_DIR/config/zsh/.zshrc" ~/.zshrc
+
+if [ "$(basename "$SHELL")" != "zsh" ]; then
+  exec zsh
 fi
