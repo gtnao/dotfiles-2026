@@ -37,11 +37,7 @@ if ! command -v claude &>/dev/null; then
   curl -fSL https://claude.ai/install.sh | bash
 fi
 
-mkdir -p ~/.config
-ln -sfn "$DOTFILES_DIR/config/git" ~/.config/git
-ln -sfn "$DOTFILES_DIR/config/nvim" ~/.config/nvim
-ln -sfn "$DOTFILES_DIR/config/zsh/.zshrc" ~/.zshrc
-ln -sfn "$DOTFILES_DIR/config/tmux" ~/.config/tmux
+"$DOTFILES_DIR/deploy.sh"
 
 if [ "$(basename "$SHELL")" != "zsh" ]; then
   exec zsh
