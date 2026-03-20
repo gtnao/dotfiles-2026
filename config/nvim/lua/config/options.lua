@@ -17,6 +17,8 @@ vim.opt.clipboard = "unnamedplus"
 
 vim.opt.virtualedit = "block"
 
+vim.opt.termguicolors = true
+
 vim.opt.list = true
 vim.opt.listchars = {
 	tab = "» ",

@@ -21,6 +21,10 @@ return {
 		},
 	},
 	{
+		"j-hui/fidget.nvim",
+		opts = {},
+	},
+	{
 		"nvimtools/none-ls.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
