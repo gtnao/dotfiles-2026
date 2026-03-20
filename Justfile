@@ -3,35 +3,43 @@ java_version := "21-tem"
 # Node
 setup-node:
     mise install node
+    @echo "Run 'exec zsh' to reload your shell."
 
 # Python
 setup-python:
     mise install python
+    @echo "Run 'exec zsh' to reload your shell."
 
 # Ruby (needs native deps for source build)
 setup-ruby:
     sudo apt install -y build-essential autoconf libssl-dev libyaml-dev zlib1g-dev libffi-dev libgmp-dev
     mise install ruby
+    @echo "Run 'exec zsh' to reload your shell."
 
 # Terraform
 setup-terraform:
     mise install terraform
+    @echo "Run 'exec zsh' to reload your shell."
 
 # Go
 setup-go:
     mise install go
+    @echo "Run 'exec zsh' to reload your shell."
 
 # AWS CLI
 setup-aws:
     mise install aws-cli
+    @echo "Run 'exec zsh' to reload your shell."
 
 # gcloud
 setup-gcloud:
     mise install gcloud
+    @echo "Run 'exec zsh' to reload your shell."
 
 # GitHub CLI
 setup-gh:
     mise install github-cli
+    @echo "Run 'exec zsh' to reload your shell."
 
 # SDKMAN
 setup-sdkman:

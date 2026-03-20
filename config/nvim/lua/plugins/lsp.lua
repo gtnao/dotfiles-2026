@@ -28,6 +28,10 @@ return {
 				vim.list_extend(ensure_installed, { "bashls", "ts_ls", "eslint", "biome" })
 			end
 
+			if vim.fn.executable("pip3") == 1 then
+				vim.list_extend(ensure_installed, { "basedpyright", "ruff" })
+			end
+
 			return { ensure_installed = ensure_installed }
 		end,
 	},
