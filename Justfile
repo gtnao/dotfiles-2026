@@ -26,6 +26,16 @@ setup-go:
     mise install go
     @echo "Run 'exec zsh' to reload your shell."
 
+# pnpm
+setup-pnpm:
+    mise install pnpm
+    @echo "Run 'exec zsh' to reload your shell."
+
+# uv
+setup-uv:
+    mise install uv
+    @echo "Run 'exec zsh' to reload your shell."
+
 # AWS CLI
 setup-aws:
     mise install aws-cli
