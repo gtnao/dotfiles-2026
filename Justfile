@@ -49,7 +49,7 @@ setup-sdkman:
 # Java (via SDKMAN, requires setup-sdkman first)
 setup-java:
     #!/usr/bin/env bash
-    set -euo pipefail
+    set -eo pipefail
     if [[ ! -s "$HOME/.sdkman/bin/sdkman-init.sh" ]]; then
         echo "SDKMAN is not installed. Run 'just setup-sdkman' first."
         exit 1
