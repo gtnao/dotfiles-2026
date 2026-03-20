@@ -3,6 +3,9 @@ set -euo pipefail
 
 DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y git curl wget build-essential unzip jq
+
 # neovim (AppImage, extracted)
 if ! command -v nvim &>/dev/null; then
   tmp="$(mktemp -d)"
