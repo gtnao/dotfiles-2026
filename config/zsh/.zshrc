@@ -32,11 +32,49 @@ zinit ice wait lucid as"command" from"gh-r" \
   atpull"%atclone" src"fzf.zsh"
 zinit light junegunn/fzf
 
+export FZF_DEFAULT_OPTS="--layout=reverse --height=40% --border"
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type d --hidden --exclude .git"
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --line-range :500 {}'"
+
 # ghq
 zinit ice wait lucid as"command" from"gh-r" pick"ghq*/ghq" \
   atclone"cp ghq*/misc/zsh/_ghq ." \
   atpull"%atclone"
 zinit light x-motemen/ghq
+
+# fd
+zinit ice wait lucid as"command" from"gh-r" pick"fd*/fd" \
+  atclone"cp fd*/autocomplete/_fd ." \
+  atpull"%atclone"
+zinit light sharkdp/fd
+
+# bat
+zinit ice wait lucid as"command" from"gh-r" pick"bat*/bat" \
+  atclone"cp bat*/autocomplete/bat.zsh _bat" \
+  atpull"%atclone"
+zinit light sharkdp/bat
+
+# ripgrep
+zinit ice wait lucid as"command" from"gh-r" pick"ripgrep*/rg" \
+  atclone"cp ripgrep*/complete/_rg ." \
+  atpull"%atclone"
+zinit light BurntSushi/ripgrep
+
+# zoxide
+zinit ice wait lucid as"command" from"gh-r" \
+  atclone"./zoxide init zsh > zoxide.zsh; cp completions/_zoxide ." \
+  atpull"%atclone" src"zoxide.zsh"
+zinit light ajeetdsouza/zoxide
+
+# eza
+zinit ice wait lucid as"command" from"gh-r"
+zinit light eza-community/eza
+
+# delta
+zinit ice wait lucid as"command" from"gh-r" bpick"*x86_64*linux*musl*"
+zinit light dandavison/delta
 
 # fzf + ghq directory jump
 function _fzf-ghq() {
