@@ -32,6 +32,11 @@ if ! command -v tmux &>/dev/null; then
   sudo apt install -y tmux
 fi
 
+# mise
+if ! command -v mise &>/dev/null; then
+  curl https://mise.run | sh
+fi
+
 # claude code
 if ! command -v claude &>/dev/null; then
   curl -fSL https://claude.ai/install.sh | bash

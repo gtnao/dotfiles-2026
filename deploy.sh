@@ -9,3 +9,4 @@ ln -sfn "$DOTFILES_DIR/config/nvim" ~/.config/nvim
 ln -sfn "$DOTFILES_DIR/config/zsh/.zshrc" ~/.zshrc
 ln -sfn "$DOTFILES_DIR/config/tmux" ~/.config/tmux
 ln -sfn "$DOTFILES_DIR/config/starship.toml" ~/.config/starship.toml
+ln -sfn "$DOTFILES_DIR/config/mise" ~/.config/mise

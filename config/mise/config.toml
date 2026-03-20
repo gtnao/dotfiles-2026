@@ -1,0 +1,9 @@
+[tools]
+node = "lts"
+python = "latest"
+ruby = "latest"
+go = "latest"
+terraform = "latest"
+aws-cli = "latest"
+gcloud = "latest"
+github-cli = "latest"
