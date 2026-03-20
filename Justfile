@@ -72,6 +72,22 @@ setup-rust:
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
     @echo "Run 'exec zsh' to reload your shell."
 
+# GPG signing for git
+setup-gpg:
+    #!/usr/bin/env bash
+    set -eo pipefail
+    name=$(git config user.name)
+    email=$(git config user.email)
+    gpg --batch --passphrase "" --quick-generate-key "$name <$email>" default default never
+    key_id=$(gpg --list-secret-keys --keyid-format=long | grep '^sec' | head -1 | sed 's/.*\/\([A-F0-9]*\) .*/\1/')
+    git config --file ~/.gitconfig user.signingkey "$key_id"
+    git config --file ~/.gitconfig commit.gpgsign true
+    echo "GPG key configured: $key_id"
+    echo ""
+    echo "Add the following public key at: https://github.com/settings/gpg/new"
+    echo ""
+    gpg --armor --export "$key_id"
+
 # Docker Engine
 setup-docker:
     #!/usr/bin/env bash
