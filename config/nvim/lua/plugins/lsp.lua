@@ -2,7 +2,12 @@ return {
 	{ "mason-org/mason.nvim", opts = {} },
 	{
 		"neovim/nvim-lspconfig",
+		dependencies = { "hrsh7th/cmp-nvim-lsp" },
 		config = function()
+			vim.lsp.config("*", {
+				capabilities = require("cmp_nvim_lsp").default_capabilities(),
+			})
+
 			vim.keymap.set("n", "<Plug>(_LSP)d", vim.lsp.buf.definition, { desc = "Go to definition" })
 			vim.keymap.set("n", "<Plug>(_LSP)y", vim.lsp.buf.type_definition, { desc = "Go to type definition" })
 			vim.keymap.set("n", "<Plug>(_LSP)D", vim.lsp.buf.declaration, { desc = "Go to declaration" })
@@ -13,8 +18,6 @@ return {
 			vim.keymap.set("i", "<C-s>", vim.lsp.buf.signature_help, { desc = "Signature help" })
 		end,
 	},
-	-- required at startup because lsp/lua_ls.lua calls require("cmp_nvim_lsp")
-	{ "hrsh7th/cmp-nvim-lsp" },
 	{
 		"mason-org/mason-lspconfig.nvim",
 		dependencies = {
@@ -22,14 +25,37 @@ return {
 			"neovim/nvim-lspconfig",
 		},
 		opts = function()
-			local ensure_installed = { "lua_ls" }
+			-- no runtime dependency
+			local ensure_installed = { "lua_ls", "clangd", "terraformls", "taplo" }
 
 			if vim.fn.executable("node") == 1 then
-				vim.list_extend(ensure_installed, { "bashls", "ts_ls", "eslint", "biome" })
+				vim.list_extend(ensure_installed, {
+					"bashls",
+					"ts_ls",
+					"eslint",
+					"biome",
+					"html",
+					"cssls",
+					"jsonls",
+					"yamlls",
+					"dockerls",
+				})
 			end
 
 			if vim.fn.executable("pip3") == 1 then
 				vim.list_extend(ensure_installed, { "basedpyright", "ruff" })
+			end
+
+			if vim.fn.executable("go") == 1 then
+				vim.list_extend(ensure_installed, { "gopls" })
+			end
+
+			if vim.fn.executable("ruby") == 1 then
+				vim.list_extend(ensure_installed, { "ruby_lsp" })
+			end
+
+			if vim.fn.executable("rustup") == 1 then
+				vim.list_extend(ensure_installed, { "rust_analyzer" })
 			end
 
 			return { ensure_installed = ensure_installed }
@@ -53,6 +79,7 @@ return {
 		config = function()
 			local null_ls = require("null-ls")
 			local has_node = vim.fn.executable("node") == 1
+			local has_ruby = vim.fn.executable("ruby") == 1
 
 			-- no runtime dependency
 			local sources = {
@@ -62,10 +89,20 @@ return {
 
 			if has_node then
 				vim.list_extend(sources, {
-					null_ls.builtins.formatting.prettierd.with({
-						-- use prettierd as default when no biome config exists
+					null_ls.builtins.formatting.prettierd,
+				})
+			end
+
+			if has_ruby then
+				vim.list_extend(sources, {
+					null_ls.builtins.formatting.rubocop.with({
 						condition = function(utils)
-							return not utils.root_has_file({ "biome.json", "biome.jsonc" })
+							return utils.root_has_file({ ".rubocop.yml" })
+						end,
+					}),
+					null_ls.builtins.diagnostics.rubocop.with({
+						condition = function(utils)
+							return utils.root_has_file({ ".rubocop.yml" })
 						end,
 					}),
 				})
