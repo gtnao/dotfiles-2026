@@ -25,7 +25,7 @@ return {
 			local ensure_installed = { "lua_ls" }
 
 			if vim.fn.executable("node") == 1 then
-				vim.list_extend(ensure_installed, { "bashls" })
+				vim.list_extend(ensure_installed, { "bashls", "ts_ls", "eslint", "biome" })
 			end
 
 			return { ensure_installed = ensure_installed }
@@ -40,10 +40,6 @@ return {
 		},
 	},
 	{
-		"j-hui/fidget.nvim",
-		opts = {},
-	},
-	{
 		"nvimtools/none-ls.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
@@ -52,17 +48,45 @@ return {
 		},
 		config = function()
 			local null_ls = require("null-ls")
-			null_ls.setup({
-				sources = {
-					null_ls.builtins.formatting.stylua,
-					null_ls.builtins.formatting.shfmt,
-				},
-			})
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				callback = function()
-					vim.lsp.buf.format({ timeout_ms = 2000 })
-				end,
-			})
+			local has_node = vim.fn.executable("node") == 1
+
+			-- no runtime dependency
+			local sources = {
+				null_ls.builtins.formatting.stylua,
+				null_ls.builtins.formatting.shfmt,
+			}
+
+			if has_node then
+				vim.list_extend(sources, {
+					null_ls.builtins.formatting.prettierd.with({
+						-- use prettierd as default when no biome config exists
+						condition = function(utils)
+							return not utils.root_has_file({ "biome.json", "biome.jsonc" })
+						end,
+					}),
+				})
+			end
+
+			null_ls.setup({ sources = sources })
 		end,
+	},
+	{
+		"folke/trouble.nvim",
+		cmd = "Trouble",
+		opts = {},
+		keys = {
+			{ "<Plug>(_LSP)xx", "<Cmd>Trouble diagnostics toggle<CR>", desc = "Diagnostics" },
+			{ "<Plug>(_LSP)xb", "<Cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer diagnostics" },
+			{ "<Plug>(_LSP)xs", "<Cmd>Trouble symbols toggle focus=false<CR>", desc = "Symbols" },
+			{
+				"<Plug>(_LSP)xl",
+				"<Cmd>Trouble lsp toggle focus=false win.position=right<CR>",
+				desc = "LSP definitions/references",
+			},
+		},
+	},
+	{
+		"j-hui/fidget.nvim",
+		opts = {},
 	},
 }
