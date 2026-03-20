@@ -1,6 +1,8 @@
 return {
 	{ "mason-org/mason.nvim", opts = {} },
 	{ "neovim/nvim-lspconfig" },
+	-- required at startup because lsp/lua_ls.lua calls require("cmp_nvim_lsp")
+	{ "hrsh7th/cmp-nvim-lsp" },
 	{
 		"mason-org/mason-lspconfig.nvim",
 		dependencies = {
