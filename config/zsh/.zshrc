@@ -27,6 +27,13 @@ setopt INC_APPEND_HISTORY
 setopt COMPLETE_IN_WORD
 setopt ALWAYS_TO_END
 
+# completion style
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
+
 # options: misc
 setopt NO_BEEP
 setopt CORRECT
