@@ -2,5 +2,33 @@
   name = gtnao
   email = n.nakane0219@gmail.com
 
+[core]
+  editor = nvim
+  pager = delta
+  whitespace = fix
+
+[init]
+  defaultBranch = main
+
+[push]
+  autoSetupRemote = true
+
+[diff]
+  algorithm = histogram
+  colorMoved = default
+
+[merge]
+  conflictstyle = zdiff3
+
+[delta]
+  line-numbers = true
+  side-by-side = true
+
+[alias]
+  st = status
+  sw = switch
+  swc = switch -c
+  nuke = !git reset --hard && git clean -fd
+
 [ghq]
   root = ~/dev

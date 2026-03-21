@@ -108,7 +108,7 @@ zinit ice wait lucid as"command" from"gh-r"
 zinit light eza-community/eza
 
 # delta
-zinit ice wait lucid as"command" from"gh-r" bpick"*x86_64*linux*musl*"
+zinit ice wait lucid as"command" from"gh-r" bpick"*x86_64*linux*musl*" pick"delta*/delta"
 zinit light dandavison/delta
 
 # fzf + ghq directory jump

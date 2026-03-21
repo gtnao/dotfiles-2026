@@ -17,6 +17,8 @@ vim.opt.clipboard = "unnamedplus"
 
 vim.opt.virtualedit = "block"
 
+vim.opt.cursorline = true
+
 vim.opt.termguicolors = true
 
 vim.opt.list = true
