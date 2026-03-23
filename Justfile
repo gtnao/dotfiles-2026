@@ -105,3 +105,5 @@ setup-docker:
     EOF
     sudo apt update
     sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    sudo usermod -aG docker "$USER"
+    echo "Run 'newgrp docker' or re-login to apply docker group."
