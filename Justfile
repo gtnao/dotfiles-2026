@@ -10,9 +10,15 @@ setup-python:
     mise install python
     @echo "Run 'exec zsh' to reload your shell."
 
-# Ruby (needs native deps for source build)
-setup-ruby:
+# Ruby on Ubuntu (needs native deps for source build via apt)
+setup-ruby-ubuntu:
     sudo apt install -y build-essential autoconf libssl-dev libyaml-dev zlib1g-dev libffi-dev libgmp-dev
+    mise install ruby
+    @echo "Run 'exec zsh' to reload your shell."
+
+# Ruby on macOS (needs native deps for source build via Homebrew)
+setup-ruby-mac:
+    brew install openssl@3 readline libyaml gmp autoconf
     mise install ruby
     @echo "Run 'exec zsh' to reload your shell."
 

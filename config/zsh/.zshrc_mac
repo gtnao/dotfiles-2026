@@ -92,10 +92,10 @@ zinit light x-motemen/ghq
 # zinit light sharkdp/bat
 
 # ripgrep
-# zinit ice wait lucid as"command" from"gh-r" pick"ripgrep*/rg" \
-#   atclone"cp ripgrep*/complete/_rg ." \
-#   atpull"%atclone"
-# zinit light BurntSushi/ripgrep
+zinit ice wait lucid as"command" from"gh-r" pick"ripgrep*/rg" \
+  atclone"cp ripgrep*/complete/_rg ." \
+  atpull"%atclone"
+zinit light BurntSushi/ripgrep
 
 # zoxide
 # zinit ice wait lucid as"command" from"gh-r" \

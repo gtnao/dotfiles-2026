@@ -1,3 +1,4 @@
+brew "tree-sitter-cli"
 brew "just"
 brew "mise"
 brew "neovim"
