@@ -123,6 +123,28 @@ function _fzf-ghq() {
 zle -N _fzf-ghq
 bindkey '^]' _fzf-ghq
 
+# fzf tmux window jump
+function _fzf-tmux-window() {
+  if [ -z "${TMUX:-}" ]; then
+    zle -M "not inside tmux"
+    return
+  fi
+  local selected
+  selected=$(tmux list-windows -a -F '#{window_id}	#{session_name}:#{window_index}	#{window_name}	#{pane_current_path}' \
+    | column -t -s "	" \
+    | fzf --reverse --header='jump to tmux window' \
+    | awk '{print $1}')
+  if [ -n "${selected}" ]; then
+    local session
+    session=$(tmux display-message -p -t "${selected}" '#{session_name}')
+    tmux switch-client -t "${session}" 2>/dev/null || true
+    tmux select-window -t "${selected}"
+  fi
+  zle reset-prompt
+}
+zle -N _fzf-tmux-window
+bindkey '^\' _fzf-tmux-window
+
 # brew
 if [ -x /opt/homebrew/bin/brew ]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
