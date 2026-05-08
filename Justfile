@@ -78,6 +78,14 @@ setup-rust:
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
     @echo "Run 'exec zsh' to reload your shell."
 
+# APM (Microsoft Agent Package Manager)
+setup-apm:
+    curl -sSL https://aka.ms/apm-unix | sh
+
+# Install global APM dependencies from ~/.apm/apm.yml (requires setup-apm + deploy)
+apm-install:
+    apm install -g
+
 # GPG signing for git
 setup-gpg:
     #!/usr/bin/env bash

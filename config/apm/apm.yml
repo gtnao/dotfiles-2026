@@ -1,0 +1,5 @@
+name: dotfiles-globals
+version: 0.1.0
+dependencies:
+  apm:
+    - gtnao/skills/init-ts-cli#d367431

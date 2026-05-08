@@ -1,5 +1,6 @@
-brew "tree-sitter-cli"
-brew "just"
-brew "mise"
-brew "neovim"
-brew "tmux"
+brew 'just'
+brew 'kayac/tap/ecspresso'
+brew 'mise'
+brew 'neovim'
+brew 'tmux'
+brew 'tree-sitter-cli'

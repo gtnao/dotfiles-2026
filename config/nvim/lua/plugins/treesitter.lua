@@ -28,6 +28,7 @@ return {
 			"toml",
 			"sql",
 			"graphql",
+			"prisma",
 			"proto",
 			"regex",
 			"diff",
